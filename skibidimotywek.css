@@ -1,0 +1,96 @@
+/* Tło z gradientem różowo-czerwonym */
+body {
+    margin: 0;
+    padding: 0;
+    background: linear-gradient(135deg, #5e5d5d, #00ff37); /* Gradient różowy i czerwony */
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-family: Arial, sans-serif;
+    overflow: hidden;
+    position: relative; /* Dla pozycji przycisku */
+}
+
+/* Ustawienia dla śniegu */
+.snowflakes {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    pointer-events: none;
+    z-index: 1000;
+}
+
+/* Płatki śniegu */
+.snowflake {
+    position: absolute;
+    top: -10%;
+    font-size: 2em;
+    color: #ffffff;
+    user-select: none;
+    animation: fall 10s linear infinite;
+}
+
+/* Animacja opadającego śniegu */
+@keyframes fall {
+    0% {
+        transform: translateY(-100px);
+    }
+    100% {
+        transform: translateY(100vh);
+    }
+}
+
+/* Duży napis z animacją zmieniającego się koloru */
+.animated-text {
+    z-index: 10;
+    text-align: center;
+    color: white;
+    font-size: 5em;
+    font-weight: bold;
+    animation: colorChange 3s linear infinite; /* Animacja zmiany koloru */
+}
+
+/* Animacja zmieniającego się koloru tekstu */
+@keyframes colorChange {
+    0% {
+        color: #ff007a;
+    }
+    25% {
+        color: #ff4c4c;
+    }
+    50% {
+        color: #00bfff;
+    }
+    75% {
+        color: #ffcc00;
+    }
+    100% {
+        color: #32cd32;
+    }
+}
+
+/* Styl przycisku "Idź dalej" */
+.continue-btn {
+    position: absolute;
+    top: 20px;
+    right: 20px;
+    padding: 10px 20px;
+    background-color: #ff4c4c; /* Czerwony kolor tła */
+    color: white;
+    font-size: 18px;
+    font-weight: bold;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    z-index: 10;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+    transition: background-color 0.3s ease;
+}
+
+/* Efekt na przycisk po najechaniu */
+.continue-btn:hover {
+    background-color: #ff007a; /* Jasny czerwony */
+}
