@@ -5,7 +5,7 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <link rel="stylesheet" href="style.css" />
-  <title>Login</title>
+  <title>Rejestracja</title>
   <style>
     .social-icons {
       position: fixed;
@@ -50,7 +50,6 @@
   </style>
 </head>
 <body>
-
   <!-- Ikony sociali -->
   <div class="social-icons">
     <a href="https://guns.lol/gerbus" target="_blank">
@@ -69,23 +68,49 @@
     <div class="bg__dot"></div>
   </div>
 
-  <!-- Formularz logowania -->
-  <form class="form" autocomplete="off" onsubmit="login(event)">
-    <div class="form__icon" aria-hidden="true"></div>
+  <!-- Formularz rejestracji -->
+  <form class="form" id="registerForm" onsubmit="register(event)">
+    <h2>Rejestracja</h2>
 
     <div class="form__input-container">
-      <input aria-label="User" class="form__input" type="text" id="user" placeholder=" " required />
-      <label class="form__input-label" for="user">Email</label>
+      <input
+        aria-label="Email"
+        class="form__input"
+        type="email"
+        id="email"
+        placeholder=" "
+        required
+      />
+      <label class="form__input-label" for="email">Email</label>
     </div>
 
     <div class="form__input-container">
-      <input aria-label="Password" class="form__input" type="password" id="password" placeholder=" " required />
-      <label class="form__input-label" for="password">Password</label>
+      <input
+        aria-label="Password"
+        class="form__input"
+        type="password"
+        id="password"
+        placeholder=" "
+        required
+      />
+      <label class="form__input-label" for="password">Hasło</label>
+    </div>
+
+    <div class="form__input-container">
+      <input
+        aria-label="Confirm Password"
+        class="form__input"
+        type="password"
+        id="confirmPassword"
+        placeholder=" "
+        required
+      />
+      <label class="form__input-label" for="confirmPassword">Potwierdź Hasło</label>
     </div>
 
     <div class="form__spacer" aria-hidden="true"></div>
-    <button type="submit" class="form__button">Log in</button>
-    <button type="button" class="form__button form__register-button" onclick="window.location.href='rejestracja.html'">Zarejestruj się</button>
+
+    <button type="submit" class="form__button">Zarejestruj się</button>
   </form>
 
   <button class="music-button" id="musicButton" onclick="toggleMusic()">▶️ Włącz muzykę</button>
@@ -110,15 +135,21 @@
       }
     }
 
-    // Funkcja logowania
-    async function login(event) {
+    // Funkcja rejestracji
+    async function register(event) {
       event.preventDefault();
 
-      const email = document.getElementById('user').value;
+      const email = document.getElementById('email').value;
       const password = document.getElementById('password').value;
+      const confirmPassword = document.getElementById('confirmPassword').value;
+
+      if (password !== confirmPassword) {
+        alert("Hasła nie pasują!");
+        return;
+      }
 
       try {
-        const response = await fetch("http://localhost:2137/login", {
+        const response = await fetch("http://localhost:2137/register", {
           method: "POST",
           headers: {
             "Content-Type": "application/json"
@@ -129,13 +160,13 @@
         const data = await response.json();
 
         if (response.ok) {
-          alert("Zalogowano pomyślnie!");
-          window.location.href = "strona2.html";
+          alert("Rejestracja zakończona pomyślnie!");
+          window.location.href = "index.html";
         } else {
-          alert(data.message || "Nie udało się zalogować.");
+          alert(data.message || "Błąd rejestracji.");
         }
       } catch (error) {
-        console.error("Błąd logowania:", error);
+        console.error("Błąd rejestracji:", error);
         alert("Błąd połączenia z serwerem.");
       }
     }
