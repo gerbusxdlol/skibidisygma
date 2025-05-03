@@ -1,6 +1,6 @@
 :root {
   --color-bg-dark: #ff0000;
-  --color-bg-light: #ffc0cb
+  --color-bg-light: #ffc0cb;
 }
 
 * {
@@ -12,9 +12,9 @@
 body {
   align-items: center;
   background: linear-gradient(
-      to top right,
-      var(--color-bg-dark),
-      var(--color-bg-light)
+    to top right,
+    var(--color-bg-dark),
+    var(--color-bg-light)
   );
   color: #fff;
   display: flex;
@@ -37,9 +37,9 @@ body {
 
 .bg__dot {
   background: linear-gradient(
-      to left,
-      var(--color-bg-light),
-      rgba(255, 255, 255, 0.3)
+    to left,
+    var(--color-bg-light),
+    rgba(255, 255, 255, 0.3)
   );
   border-radius: 50%;
   opacity: 0.5;
@@ -63,9 +63,9 @@ body {
 .form {
   backdrop-filter: blur(5px);
   background: linear-gradient(
-      to left,
-      rgba(255, 255, 255, 0.05),
-      rgba(255, 255, 255, 0.35)
+    to left,
+    rgba(255, 255, 255, 0.05),
+    rgba(255, 255, 255, 0.35)
   );
   border-radius: 15px;
   box-shadow: 0px 8px 24px 0px rgba(0, 0, 0, 0.3);
@@ -124,9 +124,9 @@ body {
 .form__input,
 .form__button {
   background: linear-gradient(
-      to right,
-      rgba(255, 255, 255, 0.1),
-      rgba(255, 255, 255, 0.25)
+    to right,
+    rgba(255, 255, 255, 0.1),
+    rgba(255, 255, 255, 0.25)
   );
   border: none;
   border-radius: 18px;
@@ -137,7 +137,7 @@ body {
   overflow: hidden;
   position: relative;
   transition: background 0.3s ease-out, box-shadow 0.3s ease-out,
-      color 0.3s ease-out, outline 0.3s ease-out;
+    color 0.3s ease-out, outline 0.3s ease-out;
 }
 
 .form__input {
@@ -210,20 +210,50 @@ body {
   padding: 12px 48px;
 }
 
+/* Przyciski rejestracji */
+.form__register-button {
+  padding: 10px 40px;  /* Mniejszy rozmiar */
+  background: linear-gradient(
+    to right,
+    rgba(255, 255, 255, 0.1),
+    rgba(255, 255, 255, 0.25)
+  );
+  border: none;
+  border-radius: 18px;
+  box-shadow: 0px 8px 24px 0px rgba(0, 0, 0, 0.3);
+  color: #fff;
+  font-size: 20px;  /* Zmniejszenie czcionki */
+  outline: transparent;
+  position: relative;
+  transition: background 0.3s ease-out, box-shadow 0.3s ease-out,
+    color 0.3s ease-out, outline 0.3s ease-out;
+  margin-top: 20px;
+}
+
+.form__register-button:hover {
+  box-shadow: 0px 8px 8px 0px rgba(0, 0, 0, 0.3);
+}
+
+.form__register-button:focus,
+.form__register-button:focus-visible {
+  outline: solid 3px rgba(255, 255, 255, 0.8);
+  outline-offset: 4px;
+}
+
 @keyframes move1 {
   0% {
-      transform: translate(-60vw, 0);
+    transform: translate(-60vw, 0);
   }
   100% {
-      transform: translate(120vw, 60vw);
+    transform: translate(120vw, 60vw);
   }
 }
 
 @keyframes move2 {
   0% {
-      transform: translate(100vw, 0);
+    transform: translate(100vw, 0);
   }
   100% {
-      transform: translate(-50vw, -30vw);
+    transform: translate(-50vw, -30vw);
   }
 }

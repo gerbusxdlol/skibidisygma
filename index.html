@@ -7,6 +7,7 @@
   <link rel="stylesheet" href="style.css" />
   <title>Login</title>
   <style>
+    /* Właściwości przycisku Włącz muzykę */
     .music-button {
       position: fixed;
       bottom: 20px;
@@ -18,7 +19,7 @@
       border: none;
       border-radius: 5px;
       cursor: pointer;
-      box-shadow: 0 4px 6px rgba(0,0,0,0.2);
+      box-shadow: 0 4px 6px rgba(0, 0, 0, 0.2);
       z-index: 1000;
       transition: background-color 0.3s;
     }
@@ -64,8 +65,12 @@
 
     <div class="form__spacer" aria-hidden="true"></div>
     <button type="submit" class="form__button">Log in</button>
+
+    <!-- Przycisk rejestracji wewnątrz formularza -->
+    <button type="button" class="form__button form__register-button" onclick="window.location.href='rejestracja.html'">Zarejestruj się</button>
   </form>
 
+  <!-- Przycisk włączania muzyki -->
   <button class="music-button" id="musicButton" onclick="toggleMusic()">▶️ Włącz muzykę</button>
 
   <audio id="muzyka" loop>
@@ -74,18 +79,16 @@
   </audio>
 
   <script>
-     function toggleMusic() {
+    function toggleMusic() {
       const audio = document.getElementById('muzyka');
       const button = document.getElementById('musicButton');
       
       if (audio.paused) {
         audio.play();
         button.textContent = '⏸️ Pauza';
-        button.innerHTML = '⏸️ Pauza'; 
       } else {
         audio.pause();
         button.textContent = '▶️ Włącz muzykę';
-        button.innerHTML = '▶️ Włącz muzykę'; 
       }
     }
 
@@ -110,13 +113,7 @@
         alert("Zły email lub hasło, spróbuj ponownie.");
       }
     }
-
-    function playMusic() {
-      const audio = document.getElementById('muzyka');
-      audio.play().catch(error => {
-        console.error("Nie udało się odtworzyć muzyki:", error);
-      });
-    }
   </script>
+
 </body>
 </html>
