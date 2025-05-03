@@ -5,6 +5,9 @@ const bodyParser = require("body-parser");
 const bcrypt = require("bcryptjs");
 
 const app = express();
+app.get('/', (req, res) => {
+  res.send('Witaj na stronie głównej!');
+});
 
 // Middleware
 app.use(cors());
