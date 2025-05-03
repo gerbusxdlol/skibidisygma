@@ -3,6 +3,7 @@ const mongoose = require("mongoose");
 const cors = require("cors");
 const bodyParser = require("body-parser");
 const bcrypt = require("bcryptjs");
+app.use(express.static('public'));
 
 const app = express();
 app.get('/', (req, res) => {
