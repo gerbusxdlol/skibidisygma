@@ -1,0 +1,231 @@
+<!DOCTYPE html>
+<html lang="pl">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Okienko Konkursowe z Gwiazdkami</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      margin: 0;
+      padding: 0;
+      background-image: linear-gradient(to bottom, #00a7ff, #9189ff, #e553d1, #ff007a, #ff0101);
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+      overflow: hidden;
+      position: relative;
+    }
+
+    .konkurs-box {
+      width: 400px;
+      padding: 20px;
+      background-color: rgba(255, 255, 255, 0.2);
+      border-radius: 10px;
+      box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      text-align: center;
+      position: relative;
+      backdrop-filter: blur(7px);
+      z-index: 2;
+    }
+
+    .bot-list {
+      margin-bottom: 20px;
+      height: 200px;
+      display: flex;
+      flex-direction: column;
+      justify-content: flex-start;
+      overflow-y: auto;
+    }
+
+    .bot-item {
+      font-size: 16px;
+      font-weight: bold;
+      margin: 5px 0;
+      opacity: 0;
+      animation: showBot 1s forwards;
+    }
+
+    .bot-item:nth-child(1) { animation-delay: 0s; }
+    .bot-item:nth-child(2) { animation-delay: 1.2s; }
+    .bot-item:nth-child(3) { animation-delay: 2.2s; }
+    .bot-item:nth-child(4) { animation-delay: 2.9s; }
+    .bot-item:nth-child(5) { animation-delay: 3.4s; }
+    .bot-item:nth-child(6) { animation-delay: 3.9s; }
+
+    @keyframes showBot {
+      0% { opacity: 0; transform: translateY(-20px); }
+      100% { opacity: 1; transform: translateY(0); }
+    }
+
+    .star {
+      position: absolute;
+      top: -10px;
+      width: 10px;
+      height: 10px;
+      background-color: yellow;
+      border-radius: 50%;
+      opacity: 0.8;
+      animation: fall linear infinite;
+    }
+
+    @keyframes fall {
+      0% {
+        transform: translateY(0);
+        opacity: 1;
+      }
+      100% {
+        transform: translateY(110vh);
+        opacity: 0;
+      }
+    }
+
+    .konkurs-btn {
+      position: absolute;
+      bottom: 20px;
+      left: 50%;
+      transform: translateX(-50%);
+      padding: 10px 20px;
+      background-color: #ff007a;
+      color: white;
+      font-size: 16px;
+      border: none;
+      border-radius: 5px;
+      cursor: pointer;
+      box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+      animation: rainbow 3s linear infinite;
+    }
+
+    @keyframes rainbow {
+      0% { background: red; }
+      14% { background: orange; }
+      28% { background: yellow; }
+      42% { background: green; }
+      57% { background: blue; }
+      71% { background: indigo; }
+      85% { background: violet; }
+      100% { background: red; }
+    }
+
+    .konkurs-btn:hover {
+      background: linear-gradient(90deg, red, blue);
+      animation: none;
+    }
+
+    .music-button {
+      position: fixed;
+      bottom: 20px;
+      right: 20px;
+      padding: 12px 16px;
+      font-size: 16px;
+      background-color: #4caf50;
+      color: white;
+      border: none;
+      border-radius: 5px;
+      cursor: pointer;
+      box-shadow: 0 4px 6px rgba(0,0,0,0.2);
+      z-index: 1000;
+      transition: background-color 0.3s;
+    }
+
+    .music-button:hover {
+      background-color: #45a049;
+    }
+    .social-icons {
+      position: fixed;
+      bottom: 20px;
+      left: 20px;
+      display: flex;
+      flex-direction: row;
+      gap: 15px;
+      z-index: 1000;
+    }
+
+    .social-icons a img {
+      width: 50px;
+      height: 50px;
+      transition: transform 0.2s;
+      border-radius: 10px;
+    }
+
+    .social-icons a:hover img {
+      transform: scale(1.1);
+    }
+
+  </style>
+</head>
+<body>
+  <div class="social-icons">
+    <a href="https://guns.lol/gerbus" target="_blank">
+      <img src="OIP.jpg" alt="Guns.lol">
+    </a>
+    <a href="https://steamcommunity.com/profiles/76561199479811057" target="_blank">
+      <img src="https://upload.wikimedia.org/wikipedia/commons/8/83/Steam_icon_logo.svg" alt="Steam">
+    </a>
+    <a href="https://instagram.com/gerbusxdlol" target="_blank">
+      <img src="https://upload.wikimedia.org/wikipedia/commons/a/a5/Instagram_icon.png" alt="Instagram">
+    </a>
+  </div>
+
+  <button class="music-button" id="musicButton" onclick="toggleMusic()">▶️ Włącz muzykę</button>
+
+  <audio id="muzyka" loop>
+    <source src="gitmuzyka.mp3" type="audio/mpeg" />
+    Twoja przeglądarka nie obsługuje odtwarzacza audio.
+  </audio>
+
+  <script>
+    function generateStars(count) {
+      for (let i = 0; i < count; i++) {
+        const star = document.createElement('div');
+        star.classList.add('star');
+
+        const size = Math.random() * 4 + 4;
+        star.style.width = `${size}px`;
+        star.style.height = `${size}px`;
+        star.style.left = `${Math.random() * 100}%`;
+        star.style.animationDuration = `${Math.random() * 5 + 3}s`;
+        star.style.animationDelay = `${Math.random() * 5}s`;
+
+        document.body.appendChild(star);
+      }
+    }
+
+    generateStars(350);
+  </script>
+
+  <div class="konkurs-box">
+    <div class="bot-list">
+      <div class="bot-item">skibidi basny wygrał konkurs!</div>
+      <div class="bot-item">tralalaro tralala wygrał konkurs!</div>
+      <div class="bot-item">pani od informatyki wygrał konkurs!</div>
+      <div class="bot-item">barelina kapucina wygrał konkurs!</div>
+      <div class="bot-item">rudy wygrał konkurs!</div>
+      <div class="bot-item">gerbus wygrał konkurs!</div>
+    </div>
+
+    <a href="masztepumycomajajajazgumy.html">
+      <button class="konkurs-btn">Dołącz do konkursu</button>
+    </a>
+  </div>
+
+  <script>
+    function toggleMusic() {
+      const audio = document.getElementById('muzyka');
+      const button = document.getElementById('musicButton');
+      if (audio.paused) {
+        audio.play();
+        button.innerHTML = '⏸️ Pauza';
+      } else {
+        audio.pause();
+        button.innerHTML = '▶️ Włącz muzykę';
+      }
+    }
+  </script>
+
+</body>
+</html>
