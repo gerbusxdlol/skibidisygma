@@ -3,25 +3,30 @@ const mongoose = require("mongoose");
 const cors = require("cors");
 const bodyParser = require("body-parser");
 const bcrypt = require("bcryptjs");
-app.use(express.static('public'));
 
-const app = express();
+const app = express(); // <- To musi być ZANIM używasz app.use()
+
+// Middleware
+app.use(express.static('public')); // serwowanie plików statycznych z folderu public
+app.use(cors());
+app.use(bodyParser.json());
+
+// Trasa główna
 app.get('/', (req, res) => {
   res.send('Witaj na stronie głównej!');
 });
 
-// Middleware
-app.use(cors());
-app.use(bodyParser.json());
-
 // Połączenie z MongoDB
-mongoose.connect("mongodb+srv://gerbusxdlol:Didolek098@cluster0.di7y32w.mongodb.net/logindbnp?retryWrites=true&w=majority")
-  .then(() => {
-    console.log("✅ Połączono z MongoDB!");
-  })
-  .catch(err => {
-    console.error("❌ Błąd połączenia z MongoDB:", err);
-  });
+mongoose.connect("mongodb+srv://gerbusxdlol:Didolek098@cluster0.di7y32w.mongodb.net/logindbnp?retryWrites=true&w=majority", {
+  useNewUrlParser: true,
+  useUnifiedTopology: true
+})
+.then(() => {
+  console.log("✅ Połączono z MongoDB!");
+})
+.catch(err => {
+  console.error("❌ Błąd połączenia z MongoDB:", err);
+});
 
 // Model użytkownika
 const User = mongoose.model("User", new mongoose.Schema({
@@ -77,7 +82,7 @@ app.post("/login", async (req, res) => {
 });
 
 // Uruchomienie serwera
-const PORT = 3000;
+const PORT = process.env.PORT || 3000;
 app.listen(PORT, () => {
   console.log(`🚀 Serwer działa na porcie ${PORT}`);
 });
