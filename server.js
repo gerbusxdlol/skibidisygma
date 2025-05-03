@@ -73,7 +73,7 @@ app.post("/login", async (req, res) => {
 });
 
 // Uruchomienie serwera
-const PORT = 2137;
+const PORT = 3000;
 app.listen(PORT, () => {
   console.log(`🚀 Serwer działa na porcie ${PORT}`);
 });
