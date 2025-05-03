@@ -21,7 +21,8 @@ mongoose.connect("mongodb+srv://gerbusxdlol:Didolek098@cluster0.di7y32w.mongodb.
   useNewUrlParser: true,
   useUnifiedTopology: true
 })
-.then(() => {
+.then(() => {const response = await fetch("https://twoja-aplikacja.onrender.com/register", {
+, {
   console.log("✅ Połączono z MongoDB!");
 })
 .catch(err => {
