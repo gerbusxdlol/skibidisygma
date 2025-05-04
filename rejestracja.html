@@ -1,0 +1,279 @@
+<!DOCTYPE html>
+<html lang="pl">
+<head>
+  <meta charset="UTF-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <link rel="stylesheet" href="style.css" />
+  <title>Rejestracja</title>
+  <style>
+    :root {
+      --color-bg-dark: #ff0000;
+      --color-bg-light: #ffc0cb;
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      align-items: center;
+      background: linear-gradient(
+        to top right,
+        var(--color-bg-dark),
+        var(--color-bg-light)
+      );
+      color: #fff;
+      display: flex;
+      font-family: Helvetica, sans-serif;
+      font-size: 24px;
+      height: 100vh;
+      justify-content: center;
+      overflow: hidden;
+      width: 100vw;
+    }
+
+    .bg {
+      height: 100%;
+      left: 0;
+      position: absolute;
+      overflow: hidden;
+      right: 0;
+      width: 100%;
+    }
+
+    .form {
+      backdrop-filter: blur(5px);
+      background: linear-gradient(
+        to left,
+        rgba(255, 255, 255, 0.05),
+        rgba(255, 255, 255, 0.35)
+      );
+      border-radius: 15px;
+      box-shadow: 0px 8px 24px 0px rgba(0, 0, 0, 0.3);
+      max-height: 100%;
+      max-width: 300px;
+      padding: 36px 24px;
+      text-align: center;
+      width: 100%;
+    }
+
+    .form__input-container {
+      margin-bottom: 32px;
+      position: relative;
+    }
+
+    .form__input,
+    .form__button {
+      background: linear-gradient(
+        to right,
+        rgba(255, 255, 255, 0.1),
+        rgba(255, 255, 255, 0.25)
+      );
+      border: none;
+      border-radius: 18px;
+      box-shadow: 0px 8px 24px 0px rgba(0, 0, 0, 0.3);
+      color: #fff;
+      font-size: 24px;
+      outline: transparent;
+      overflow: hidden;
+      position: relative;
+      transition: background 0.3s ease-out, box-shadow 0.3s ease-out,
+        color 0.3s ease-out, outline 0.3s ease-out;
+    }
+
+    .form__input {
+      padding: 12px 24px;
+      width: 100%;
+    }
+
+    .form__button {
+      cursor: pointer;
+      padding: 12px 48px;
+    }
+
+    .form__input:focus,
+    .form__input:focus-visible,
+    .form__button:focus,
+    .form__button:focus-visible {
+      outline: solid 3px rgba(255, 255, 255, 0.8);
+    }
+
+    .form__input-label {
+      cursor: text;
+      font-style: italic;
+      opacity: 0.4;
+      position: absolute;
+      left: 24px;
+      top: 50%;
+      transform: translateY(-50%);
+      transition: left 0.2s ease-in, opacity 0.2s ease-in;
+    }
+
+    .form__input:focus + .form__input-label,
+    .form__input:not(:placeholder-shown) + .form__input-label {
+      left: 100%;
+      opacity: 0;
+    }
+
+    .form__spacer {
+      background: rgba(255, 255, 255, 0.5);
+      border-radius: 100%;
+      display: block;
+      height: 2px;
+      margin: 32px auto;
+      width: 80%;
+    }
+
+    .music-button {
+      position: fixed;
+      bottom: 20px;
+      right: 20px;
+      padding: 12px 16px;
+      font-size: 16px;
+      background-color: #4caf50;
+      color: white;
+      border: none;
+      border-radius: 5px;
+      cursor: pointer;
+      box-shadow: 0 4px 6px rgba(0, 0, 0, 0.2);
+      z-index: 1000;
+      transition: background-color 0.3s;
+    }
+
+    .music-button:hover {
+      background-color: #45a049;
+    }
+
+    .social-icons {
+      position: fixed;
+      bottom: 20px;
+      left: 20px;
+      display: flex;
+      gap: 10px;
+    }
+
+    .social-icons a {
+      display: inline-block;
+    }
+
+    .social-icons img {
+      width: 48px; /* Zwiększenie rozmiaru ikon */
+      height: 48px; /* Zwiększenie rozmiaru ikon */
+    }
+
+  </style>
+</head>
+<body>
+  
+  <div class="social-icons">
+    <a href="https://guns.lol/gerbus" target="_blank">
+      <img src="OIP.jpg" alt="Guns.lol">
+    </a>
+    <a href="https://steamcommunity.com/profiles/76561199479811057" target="_blank">
+      <img src="https://upload.wikimedia.org/wikipedia/commons/8/83/Steam_icon_logo.svg" alt="Steam">
+    </a>
+    <a href="https://instagram.com/gerbusxdlol" target="_blank">
+      <img src="https://upload.wikimedia.org/wikipedia/commons/a/a5/Instagram_icon.png" alt="Instagram">
+    </a>
+  </div>
+
+  <div class="bg" aria-hidden="true">
+    <div class="bg__dot"></div>
+    <div class="bg__dot"></div>
+  </div>
+
+  <form class="form" id="registerForm">
+    <h2>Rejestracja</h2>
+
+    <div class="form__input-container">
+      <input
+        aria-label="Email"
+        class="form__input"
+        type="email"
+        id="email"
+        placeholder=" "
+        required
+      />
+      <label class="form__input-label" for="email">Email</label>
+    </div>
+
+    <div class="form__input-container">
+      <input
+        aria-label="Password"
+        class="form__input"
+        type="password"
+        id="password"
+        placeholder=" "
+        required
+      />
+      <label class="form__input-label" for="password">Hasło</label>
+    </div>
+
+    <div class="form__input-container">
+      <input
+        aria-label="Confirm Password"
+        class="form__input"
+        type="password"
+        id="confirmPassword"
+        placeholder=" "
+        required
+      />
+      <label class="form__input-label" for="confirmPassword">Potwierdź Hasło</label>
+    </div>
+
+    <div class="form__spacer" aria-hidden="true"></div>
+
+    <button type="submit" class="form__button">Zarejestruj się</button>
+  </form>
+
+  <button class="music-button" id="musicButton" onclick="toggleMusic()">▶️ Włącz muzykę</button>
+
+  <audio id="muzyka" loop>
+    <source src="casablanca-prod-crackhouse.mp3" type="audio/mpeg">
+    Twoja przeglądarka nie obsługuje odtwarzacza audio.
+  </audio>
+
+  <script>
+    // Funkcja włączania muzyki
+    function toggleMusic() {
+      const audio = document.getElementById('muzyka');
+      const button = document.getElementById('musicButton');
+      
+      if (audio.paused) {
+        audio.play();
+        button.textContent = '⏸️ Pauza';
+      } else {
+        audio.pause();
+        button.textContent = '▶️ Włącz muzykę';
+      }
+    }
+
+    // Funkcja rejestracji
+    document.getElementById('registerForm').addEventListener('submit', function(event) {
+      event.preventDefault();
+
+      const email = document.getElementById('email').value;
+      const password = document.getElementById('password').value;
+      const confirmPassword = document.getElementById('confirmPassword').value;
+
+      if (password !== confirmPassword) {
+        alert("Hasła nie pasują!");
+        return;
+      }
+
+      // Rejestracja użytkownika (przykład - zapis do lokalnej pamięci)
+      localStorage.setItem('email', email);
+      localStorage.setItem('password', password);
+
+      alert("Rejestracja zakończona pomyślnie!");
+
+      // Przekierowanie na stronę logowania
+      window.location.assign("index.html");
+    });
+  </script>
+
+</body>
+</html>
