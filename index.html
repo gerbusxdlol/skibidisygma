@@ -1,0 +1,164 @@
+<!DOCTYPE html>
+<html lang="pl">
+<head>
+  <meta charset="UTF-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <link rel="stylesheet" href="style.css" />
+  <title>Login</title>
+  <style>
+    /* Styl ikon sociali */
+    .social-icons {
+      position: fixed;
+      bottom: 20px;
+      left: 20px;
+      display: flex;
+      flex-direction: row;
+      gap: 15px;
+      z-index: 1000;
+    }
+
+    .social-icons a img {
+      width: 50px;
+      height: 50px;
+      transition: transform 0.2s;
+      border-radius: 10px;
+    }
+
+    .social-icons a:hover img {
+      transform: scale(1.1);
+    }
+
+    /* Styl przycisku muzyki */
+    .music-button {
+      position: fixed;
+      bottom: 20px;
+      right: 20px;
+      padding: 12px 16px;
+      font-size: 16px;
+      background-color: #4caf50;
+      color: white;
+      border: none;
+      border-radius: 5px;
+      cursor: pointer;
+      box-shadow: 0 4px 6px rgba(0, 0, 0, 0.2);
+      z-index: 1000;
+      transition: background-color 0.3s;
+    }
+
+    .music-button:hover {
+      background-color: #45a049;
+    }
+
+    /* Styl informacji logowania w prawym górnym rogu */
+    .login-info {
+  position: fixed;
+  top: 20px;
+  right: 20px;
+  text-align: right;
+  font-size: 25px;
+  color: #fff;
+  background-color: rgba(255, 0, 0, 0.4); /* zielone półprzezroczyste tło */
+  backdrop-filter: blur(8px); /* efekt rozmycia */
+  -webkit-backdrop-filter: blur(8px); /* wsparcie dla Safari */
+  padding: 10px 10px;
+  border-radius: 10px;
+  font-family: Arial, sans-serif;
+  z-index: 1000;
+}
+  </style>
+</head>
+<body>
+
+  <!-- Ikony sociali -->
+  <div class="social-icons">
+    <a href="https://guns.lol/gerbus" target="_blank">
+      <img src="OIP.jpg" alt="Guns.lol">
+    </a>
+    <a href="https://steamcommunity.com/profiles/76561199479811057" target="_blank">
+      <img src="https://upload.wikimedia.org/wikipedia/commons/8/83/Steam_icon_logo.svg" alt="Steam">
+    </a>
+    <a href="https://instagram.com/gerbusxdlol" target="_blank">
+      <img src="https://upload.wikimedia.org/wikipedia/commons/a/a5/Instagram_icon.png" alt="Instagram">
+    </a>
+    <a href="https://www.youtube.com/@gerbusxd" target="_blank">
+      <img src="pobrane (1).png" alt="YouTube">
+    </a>
+  </div>
+  
+  <!-- Informacja o loginie i haśle w prawym górnym rogu -->
+  <div class="login-info">
+    email - user@gmail.com<br>
+    password - casablanca
+  </div>
+
+  <div class="bg" aria-hidden="true">
+    <div class="bg__dot"></div>
+    <div class="bg__dot"></div>
+  </div>
+
+  <!-- Formularz logowania -->
+  <form class="form" autocomplete="off" onsubmit="login(event)">
+    <div class="form__icon" aria-hidden="true"></div>
+
+    <div class="form__input-container">
+      <input aria-label="User" class="form__input" type="text" id="user" placeholder=" " required />
+      <label class="form__input-label" for="user">Email</label>
+    </div>
+
+    <div class="form__input-container">
+      <input aria-label="Password" class="form__input" type="password" id="password" placeholder=" " required />
+      <label class="form__input-label" for="password">Password</label>
+    </div>
+
+    <div class="form__spacer" aria-hidden="true"></div>
+    <button type="submit" class="form__button">Log in</button>
+    <button type="button" class="form__button form__register-button" onclick="window.location.href='rejestracja.html'">Zarejestruj się</button>
+  </form>
+
+  <!-- Przycisk włączania muzyki -->
+  <button class="music-button" id="musicButton" onclick="toggleMusic()">▶️ Włącz muzykę</button>
+
+  <audio id="muzyka" loop>
+    <source src="casablanca-prod-crackhouse.mp3" type="audio/mpeg">
+    Twoja przeglądarka nie obsługuje odtwarzacza audio.
+  </audio>
+
+  <script>
+    function toggleMusic() {
+      const audio = document.getElementById('muzyka');
+      const button = document.getElementById('musicButton');
+      
+      if (audio.paused) {
+        audio.play();
+        button.textContent = '⏸️ Pauza';
+      } else {
+        audio.pause();
+        button.textContent = '▶️ Włącz muzykę';
+      }
+    }
+
+    function login(event) {
+      event.preventDefault();
+
+      const email = document.getElementById('user').value;
+      const password = document.getElementById('password').value;
+
+      const users = [
+        { email: 'admin@gmail.com', password: 'gerbusio' },
+        { email: 'user@gmail.com', password: 'casablanca' },
+      ];
+
+      const isValid = users.some(user => user.email === email && user.password === password);
+
+      if (isValid) {
+        alert("Zalogowałeś się pomyślnie!");
+        window.location.assign("strona2.html");
+      } else {
+        alert("Zły email lub hasło, spróbuj ponownie.");
+      }
+    }
+  </script>
+
+</body>
+</html>

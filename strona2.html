@@ -1,0 +1,289 @@
+<!DOCTYPE html>
+<html lang="pl">
+<head>
+  <meta charset="UTF-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Strona z blokami</title>
+  <style>
+    body {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 35px;
+      padding: 20px;
+      justify-content: center;
+      align-items: flex-start;
+      min-height: 100vh;
+      background-image: linear-gradient(to bottom, #00a7ff, #9189ff, #e553d1, #ff007a, #ff0101);
+      overflow-x: hidden;
+      position: relative;
+    }
+
+    .blok {
+      background-color: gray;
+      border-radius: 10px;
+      padding: 15px;
+      height: 300px;
+      width: 250px;
+      transition: transform 0.8s ease-in-out;
+      text-align: center;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      font-weight: bold;
+      overflow: hidden;
+      position: relative;
+    }
+
+    .blok img {
+      max-width: 100%;
+      max-height: 100px;
+      object-fit: contain;
+      margin-bottom: 10px;
+    }
+
+    .blok:hover {
+      background-color: lightyellow;
+      transform: rotate(5deg) scale(1.05);
+    }
+
+    .nike {
+      background-color: gray;
+      color: white;
+    }
+
+    .nike a {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      height: 100%;
+      width: 100%;
+      text-decoration: none;
+      color: inherit;
+      padding: 10px 0;
+    }
+
+    .nike span {
+      font-size: 24px;
+      font-weight: bold;
+    }
+
+    .nike img {
+      max-height: 100px;
+      margin-top: auto;
+    }
+
+    .nike:hover {
+      background-color: #000000;
+      transform: rotate(-5deg) scale(1.05);
+    }
+
+    .adidojs {
+      background-color: gray;
+      color: #ffffff;
+    }
+
+    .adidojs a {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: space-between;
+      height: 100%;
+      width: 100%;
+      text-decoration: none;
+      color: inherit;
+      padding: 10px 0;
+    }
+
+    .adidojs span {
+      font-size: 24px;
+      font-weight: bold;
+      margin-bottom: 10px;
+    }
+
+    .adidojs img {
+      max-height: 125px;
+      max-width: 125%;
+      object-fit: contain;
+      margin-top: auto;
+    }
+
+    .adidojs:hover {
+      background-color: #000000;
+      transform: rotate(-5deg) scale(1.05);
+    }
+
+    .social-icons {
+      position: fixed;
+      bottom: 20px;
+      left: 20px;
+      display: flex;
+      gap: 10px;
+    }
+
+    .social-icons a {
+      display: inline-block;
+    }
+
+    .social-icons img {
+      width: 48px; /* Zwiększenie rozmiaru ikon */
+      height: 48px; /* Zwiększenie rozmiaru ikon */
+    }
+    .snow {
+      position: fixed;
+      top: 0.01;
+      left: 0.01;
+      pointer-events: none;
+      z-index: 0;
+      width: 100%;
+      height: 100%;
+    }
+
+    .snowflake {
+      position: absolute;
+      top: -10px;
+      font-size: 20px;
+      opacity: 0.8;
+      animation: fall 10s linear infinite;
+    }
+
+    @keyframes fall {
+      0% {
+        transform: translateX(0) translateY(0);
+        opacity: 1;
+      }
+      100% {
+        transform: translateX(100px) translateY(100vh);
+        opacity: 0;
+      }
+    }
+
+    .snowflake:nth-child(1) { left: 10%; animation-duration: 2s; animation-delay: 0s; }
+    .snowflake:nth-child(2) { left: 20%; animation-duration: 2s; animation-delay: 0.5s; }
+    .snowflake:nth-child(3) { left: 30%; animation-duration: 2s; animation-delay: 1s; }
+    .snowflake:nth-child(4) { left: 40%; animation-duration: 2s; animation-delay: 1.5s; }
+    .snowflake:nth-child(5) { left: 50%; animation-duration: 2s; animation-delay: 2s; }
+    .snowflake:nth-child(6) { left: 60%; animation-duration: 2s; animation-delay: 2.5s; }
+    .snowflake:nth-child(7) { left: 70%; animation-duration: 2s; animation-delay: 3s; }
+    .snowflake:nth-child(8) { left: 80%; animation-duration: 2s; animation-delay: 3.5s; }
+    .snowflake:nth-child(9) { left: 90%; animation-duration: 2s; animation-delay: 4s; }
+    .snowflake:nth-child(10) { left: 94%; animation-duration: 2s; animation-delay: 4s; }
+    .snowflake:nth-child(11) { left: 92%; animation-duration: 2s; animation-delay: 4s; }
+
+    .konkurs-btn {
+      position: fixed;
+      top: 20px;
+      right: 20px;
+      padding: 15px 30px;
+      background-color: #ff007a;
+      color: white;
+      font-size: 16px;
+      border: none;
+      border-radius: 5px;
+      cursor: pointer;
+      box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+      animation: rainbow 3s linear infinite;
+    }
+
+    .konkurs-btn:hover {
+      transform: scale(1.1);
+      box-shadow: 0 6px 15px rgba(255, 0, 122, 0.8), 0 6px 15px rgba(0, 170, 255, 0.8);
+    }
+
+    .music-button {
+      position: fixed;
+      bottom: 20px;
+      right: 20px;
+      padding: 12px 16px;
+      font-size: 16px;
+      background-color: #4caf50;
+      color: white;
+      border: none;
+      border-radius: 5px;
+      cursor: pointer;
+      box-shadow: 0 4px 6px rgba(0,0,0,0.2);
+      z-index: 1000;
+      transition: background-color 0.3s;
+    }
+
+    .music-button:hover {
+      background-color: #45a049;
+    }
+  </style>
+</head>
+<body>
+  
+  <div class="social-icons">
+    <a href="https://guns.lol/gerbus" target="_blank">
+      <img src="OIP.jpg" alt="Guns.lol">
+    </a>
+    <a href="https://steamcommunity.com/profiles/76561199479811057" target="_blank">
+      <img src="https://upload.wikimedia.org/wikipedia/commons/8/83/Steam_icon_logo.svg" alt="Steam">
+    </a>
+    <a href="https://instagram.com/gerbusxdlol" target="_blank">
+      <img src="https://upload.wikimedia.org/wikipedia/commons/a/a5/Instagram_icon.png" alt="Instagram">
+    </a>
+    <a href="https://www.youtube.com/@gerbusxd" target="_blank">
+      <img src="pobrane (1).png" alt="YouTube">
+    </a>
+  </div>
+  
+  <button class="music-button" id="musicButton" onclick="toggleMusic()">▶️ Włącz muzykę</button>
+
+  <audio id="muzyka" loop>
+    <source src="gitmuzyka.mp3" type="audio/mpeg" />
+    Twoja przeglądarka nie obsługuje odtwarzacza audio.
+  </audio>
+
+  <div class="snow">
+    <div class="snowflake">❄️</div>
+    <div class="snowflake">❄️</div>
+    <div class="snowflake">❄️</div>
+    <div class="snowflake">❄️</div>
+    <div class="snowflake">❄️</div>
+    <div class="snowflake">❄️</div>
+    <div class="snowflake">❄️</div>
+    <div class="snowflake">❄️</div>
+    <div class="snowflake">❄️</div>
+    <div class="snowflake">❄️</div>
+    <div class="snowflake">❄️</div>
+  </div>
+
+  <div class="blok nike">
+    <a href="https://www.nike.com/pl/" target="_blank">
+      <span>NIKE</span>
+      <img src="nike2.png" alt="Nike" />
+    </a>
+  </div>
+
+  <div class="blok adidojs">
+    <a href="https://sp5-bytom.edupage.org/" target="_blank">
+      <span>SZKOŁA</span>
+      <img src="szkola.jpg" alt="szkoła" />
+    </a>
+  </div>
+
+  <a href="fajnakochanamamusiaxdlolfajneskibidielo123.html">
+    <button class="konkurs-btn">KONKURS</button>
+  </a>
+
+  <script>
+    function toggleMusic() {
+      const audio = document.getElementById('muzyka');
+      const button = document.getElementById('musicButton');
+      
+      if (audio.paused) {
+        audio.play();
+        button.textContent = '⏸️ Pauza';
+        button.innerHTML = '⏸️ Pauza';
+      } else {
+        audio.pause();
+        button.textContent = '▶️ Włącz muzykę';
+        button.innerHTML = '▶️ Włącz muzykę';
+      }
+    }
+  </script>
+</body>
+</html>
